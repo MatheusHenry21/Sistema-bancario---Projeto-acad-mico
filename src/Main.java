@@ -4,18 +4,18 @@ public class Main {
     public static void main() {
         Util entradas = new Util();
         Banco clientes = new Banco();
+        SubMain subMenus = new SubMain();
         AtualizadorDeContas atualizacao = new AtualizadorDeContas(.08);
 
-        System.out.println("Bem-vindo ao Banco!");
+        System.out.println("\nBem-vindo ao Banco!");
 
         while(true){
 
-            System.out.println("\n---MENU---\n");
-            System.out.println("1 - Adicionar contas");
+            System.out.println("\n   ---MENU---");
+            System.out.println("1 - Criar conta");
             System.out.println("2 - Atualizar contas");
             System.out.println("3 - Sair");
 
-            System.out.print("\nDigite a opçao: ");
             int opcao = entradas.opcao();
 
             if (opcao == 3){
@@ -23,13 +23,7 @@ public class Main {
                 break;
 
             } else if (opcao == 1) {
-                Conta novaConta = new Conta();
-
-                System.out.print("\nDigite um saldo para depósito: ");
-                double saldo = entradas.saldo();
-                novaConta.depositar(saldo);
-
-                clientes.adicionar(novaConta);
+                subMenus.subMainContas();
 
             } else if (opcao == 2) {
                 ArrayList<Conta> contas = new ArrayList<>(clientes.getContas());
@@ -38,9 +32,9 @@ public class Main {
                 }
                 System.out.print("\nSaldo total: ");
                 System.out.println(atualizacao.getSaldoTotal());
+
             } else{
                 System.out.println("\nErro, opção inexistente!");
-
             }
         }
     }
